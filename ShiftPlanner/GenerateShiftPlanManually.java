@@ -17,7 +17,7 @@ public class GenerateShiftPlanManually {
     public void initializeMorningShift(){
         initialize();
 
-        MorningShift morningShift = new MorningShift(date = LocalDate.now());
+        MorningShift morningShift = new MorningShift(date = LocalDate.now(), new int[]{2, 1, 2, 1});
         String weekDay = String.valueOf(morningShift.getDate().getDayOfWeek());
         System.out.println(weekDay);
 
@@ -31,26 +31,18 @@ public class GenerateShiftPlanManually {
 
     public void addWorkerToMorningShift(MorningShift morningShift, Worker worker, String weekDay){
 
-        if(checkWorkingDay(worker,weekDay)){
-            if(checkPrefPos(worker, "ass")) {
-                if(morningShift.getWorkersAss().size() < 2){
-                    morningShift.addWorkersAss(worker);
-                }
+        if(worker.isMorningShift() && checkWorkingDay(worker,weekDay)){
+            if(checkPrefPos(worker, "ass") && morningShift.getWorkersAss().size() < morningShift.getSpecReqStaffCount(0)) {
+                morningShift.addWorkersAss(worker);
             }
-            else if(checkPrefPos(worker, "rec")){
-                if(morningShift.getWorkersRec().size() < 1) {
-                    morningShift.addWorkersRec(worker);
-                }
+            else if(checkPrefPos(worker, "rec") && morningShift.getWorkersRec().size() < morningShift.getSpecReqStaffCount(1)){
+                morningShift.addWorkersRec(worker);
             }
-            else if(checkPrefPos(worker, "pzr")){
-                if(morningShift.getWorkersPZR().size() < 1) {
-                    morningShift.addWorkersPZR(worker);
-                }
+            else if(checkPrefPos(worker, "pzr") && morningShift.getWorkersPzr().size() < morningShift.getSpecReqStaffCount(2)){
+                morningShift.addWorkersPzr(worker);
             }
-            else if(checkPrefPos(worker, "org")){
-                if(morningShift.getWorkersOrg().size() < 1) {
-                    morningShift.addWorkersOrg(worker);
-                }
+            else if(checkPrefPos(worker, "org") && morningShift.getWorkersOrg().size() < morningShift.getSpecReqStaffCount(3)){
+                morningShift.addWorkersOrg(worker);
             }
         }
     }
@@ -58,7 +50,7 @@ public class GenerateShiftPlanManually {
     public Boolean checkWorkingDay(Worker worker, String weekDay){
         ArrayList workingDays = worker.getWorkingDays();
         for(int i = 0; i < workingDays.size(); i++) {
-            if (workingDays.get(i) == weekDay){
+            if (workingDays.get(i).equals(weekDay)){
                 return true;
             }
         }
@@ -68,7 +60,8 @@ public class GenerateShiftPlanManually {
     public Boolean checkPrefPos(Worker worker, String pos){
         ArrayList prefPos = worker.getPreferredPosition();
         for(int i = 0; i < prefPos.size(); i++) {
-            if (prefPos.get(i) == pos){
+            if (prefPos.get(i).equals(pos)){
+                System.out.println(worker.getName() + " preferred position is: " + pos);
                 return true;
             }
         }
@@ -115,16 +108,16 @@ public class GenerateShiftPlanManually {
                 true, true, true, true, workingDaysAll, prefPosAll);
 
         maxi = new Worker("maxi", true, true,
-                true, true, true, true, workingDaysMoWeFr, prefPosAll);
+                true, true, true, true, workingDaysAll, prefPosAll);
 
         phoebe = new Worker("phoebe", true, true,
                 true, true, true, true, workingDaysMoWeFr, prefPosAll);
 
         rachel = new Worker("rachel", true, true,
-                true, true, true, true, workingDaysMoWeFr, prefPosAll);
+                true, true, true, true, workingDaysTuTh, prefPosAll);
 
         monica = new Worker("monica", true, true,
-                true, true, true, true, workingDaysMoWeFr, prefPosAll);
+                true, true, true, true, workingDaysTuTh, prefPosAll);
     }
 
 }

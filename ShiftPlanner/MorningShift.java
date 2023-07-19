@@ -1,16 +1,18 @@
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MorningShift {
     private LocalDate date;
+    private int[] reqStaffCount = {0,0,0,0};
     private ArrayList<Worker> workersAss = new ArrayList<>();
     private ArrayList<Worker> workersRec = new ArrayList<>();
-    private ArrayList<Worker> workersPZR = new ArrayList<>();
+    private ArrayList<Worker> workersPzr = new ArrayList<>();
     private ArrayList<Worker> workersOrg = new ArrayList<>();
 
-    public MorningShift(LocalDate date) {
+    public MorningShift(LocalDate date, int[] reqStaffCount) {
         this.date = date;
+        this.reqStaffCount = reqStaffCount;
     }
 
     public LocalDate getDate() {
@@ -19,6 +21,18 @@ public class MorningShift {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public int[] getReqStaffCount() {
+        return reqStaffCount;
+    }
+
+    public int getSpecReqStaffCount(int i){
+        return reqStaffCount[i];
+    }
+
+    public void setReqStaffCount(int[] reqStaffCount) {
+        this.reqStaffCount = reqStaffCount;
     }
 
     public ArrayList<Worker> getWorkersAss() {
@@ -37,12 +51,12 @@ public class MorningShift {
         workersRec.add(worker);
     }
 
-    public ArrayList<Worker> getWorkersPZR() {
-        return workersPZR;
+    public ArrayList<Worker> getWorkersPzr() {
+        return workersPzr;
     }
 
-    public void addWorkersPZR(Worker worker) {
-        workersPZR.add(worker);
+    public void addWorkersPzr(Worker worker) {
+        workersPzr.add(worker);
     }
 
     public ArrayList<Worker> getWorkersOrg() {
@@ -64,7 +78,7 @@ public class MorningShift {
             System.out.println(i.getName());
         }
         System.out.println("Morning Shift PZR:");
-        for(Worker i : workersPZR){
+        for(Worker i : workersPzr){
             System.out.println(i.getName());
         }
         System.out.println("Morning Shift Orga:");
