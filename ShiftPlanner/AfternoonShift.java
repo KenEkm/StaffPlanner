@@ -1,17 +1,17 @@
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class MorningShift {
+public class AfternoonShift {
     private LocalDate date;
     private int[] reqStaffCount = {0,0,0,0};
     private ArrayList<Worker> workersAss = new ArrayList<>();
     private ArrayList<Worker> workersRec = new ArrayList<>();
     private ArrayList<Worker> workersPzr = new ArrayList<>();
     private ArrayList<Worker> workersOrg = new ArrayList<>();
-    private ArrayList<Worker> allWorkersMorningShift = new ArrayList<>();
 
-    public MorningShift(LocalDate date, int[] reqStaffCount) {
+    private ArrayList<Worker> allWorkersAfternoonShift = new ArrayList<>();
+
+    public AfternoonShift(LocalDate date, int[] reqStaffCount) {
         this.date = date;
         this.reqStaffCount = reqStaffCount;
     }
@@ -68,29 +68,29 @@ public class MorningShift {
         workersOrg.add(worker);
     }
 
-    public ArrayList<Worker> getAllWorkersMorningShift() {
-        return allWorkersMorningShift;
+    public ArrayList<Worker> getAllWorkersAfternoonShift() {
+        return allWorkersAfternoonShift;
     }
 
-    public void addAllWorkersMorningShift(Worker worker) {
-        allWorkersMorningShift.add(worker);
+    public void addAllWorkersAfternoonShift(Worker worker) {
+        allWorkersAfternoonShift.add(worker);
     }
 
-    public void printAllWorkersMorningShift(){
+    public void printAllWorkersAfternoonShift(){
         System.out.println("### ShiftPlan for: " + date + " ###");
-        System.out.println("Morning Shift Assist:");
+        System.out.println("Afternoon Shift Assist:");
         for(Worker i : workersAss){
             System.out.println(i.getName());
         }
-        System.out.println("Morning Shift Reception:");
+        System.out.println("Afternoon Shift Reception:");
         for(Worker i : workersRec){
             System.out.println(i.getName());
         }
-        System.out.println("Morning Shift PZR:");
+        System.out.println("Afternoon Shift PZR:");
         for(Worker i : workersPzr){
             System.out.println(i.getName());
         }
-        System.out.println("Morning Shift Orga:");
+        System.out.println("Afternoon Shift Orga:");
         for(Worker i : workersOrg){
             System.out.println(i.getName());
         }
