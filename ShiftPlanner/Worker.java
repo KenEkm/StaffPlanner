@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Worker {
     private String name;
@@ -9,11 +10,12 @@ public class Worker {
     private boolean morningShift = false;
     private boolean afternoonShift = false;
 
-    private float monthlyWorkingHours;
+    private HashMap<Integer, Float> workingHours = new HashMap<Integer, Float>();
     private ArrayList<String> workingDays = new ArrayList<String>();
     private ArrayList<String> preferredPosition = new ArrayList<String>();
 
     private int daysOfSickLeave;
+    private int daysOfHoliday;
 
     public Worker(String name, boolean positionAss, boolean positionRec, boolean positionPzr,
                   boolean positionOrg, boolean morningShift, boolean afternoonShift,
@@ -101,12 +103,12 @@ public class Worker {
         this.preferredPosition = preferredPosition;
     }
 
-    public float getMonthlyWorkingHours() {
-        return monthlyWorkingHours;
+    public HashMap<Integer, Float> getWorkingHours() {
+        return workingHours;
     }
 
-    public void setMonthlyWorkingHours(float monthlyWorkingHours) {
-        this.monthlyWorkingHours = monthlyWorkingHours;
+    public void setWorkingHours(HashMap<Integer, Float> workingHours) {
+        this.workingHours = workingHours;
     }
 
     public int getDaysOfSickLeave() {
@@ -115,5 +117,13 @@ public class Worker {
 
     public void setDaysOfSickLeave(int daysOfSickLeave) {
         this.daysOfSickLeave = daysOfSickLeave;
+    }
+
+    public int getDaysOfHoliday() {
+        return daysOfHoliday;
+    }
+
+    public void setDaysOfHoliday(int daysOfHoliday) {
+        this.daysOfHoliday = daysOfHoliday;
     }
 }

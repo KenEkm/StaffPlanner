@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class GenerateShiftPlanManually {
+public class GenerateShiftPlanDay {
     public ArrayList<String> workingDaysAll = new ArrayList<>();
     public ArrayList<String> workingDaysMoWeFr = new ArrayList<>();
     public ArrayList<String> workingDaysTuTh = new ArrayList<>();
