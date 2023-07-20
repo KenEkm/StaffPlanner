@@ -13,20 +13,14 @@ public class Main {
 
     public static void main(String args[]){
         date = LocalDate.now();
+        date = date.minusDays(3);
+        System.out.println("--- Date: " + date + date.getDayOfWeek() + " ---");
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         weekNumber = date.get(weekFields.weekOfWeekBasedYear());
 
-        
-        System.out.println("Kalenderwoche: " + weekNumber);
 
-        MorningShift morningShift = new MorningShift( date, new int[]{2, 1, 2, 1});
-        generateShiftPlanDay.initializeMorningShift(morningShift);
+        System.out.println(" --- Week number: " + weekNumber + " ---");
 
-
-        AfternoonShift afternoonShift = new AfternoonShift( date, new int[]{2, 1, 2, 1});
-        generateShiftPlanDay.initializeAfternoonShift(morningShift, afternoonShift);
-
-
-        generateShiftPlanWeek = new GenerateShiftPlanWeek(date, weekNumber, morningShift, afternoonShift);
+        generateShiftPlanWeek = new GenerateShiftPlanWeek(date, weekNumber, new int[]{2, 1, 2, 1});
     }
 }

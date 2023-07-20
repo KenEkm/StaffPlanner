@@ -77,7 +77,7 @@ public class MorningShift {
     }
 
     public void printAllWorkersMorningShift(){
-        System.out.println("ShiftPlan for: " + date);
+        System.out.println("### ShiftPlan for: " + date + " ###");
         System.out.println("Morning Shift Assist:");
         for(Worker i : workersAss){
             System.out.println(i.getName());
