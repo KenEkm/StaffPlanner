@@ -1,6 +1,4 @@
-import java.time.Instant;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GenerateShiftPlanWeek {
@@ -9,7 +7,7 @@ public class GenerateShiftPlanWeek {
     private int weekNumber;
     public GenerateShiftPlanDay generateShiftPlanDay = new GenerateShiftPlanDay();
     private HashMap<String, MorningShift> morningShifts = new HashMap<>();
-    private HashMap<String, AfternoonShift> afternoonShits = new HashMap<>();
+    private HashMap<String, AfternoonShift> afternoonShifts = new HashMap<>();
     private int daysToGenerate;
 
     public GenerateShiftPlanWeek(LocalDate date, int weekNumber, int[] positions) {
@@ -31,8 +29,8 @@ public class GenerateShiftPlanWeek {
         for(String i: morningShifts.keySet()){
             System.out.println("### Morning shift generated for: " + i + " " + morningShifts.size() + " ###");
         }
-        for(String i: afternoonShits.keySet()){
-            System.out.println("### Afternoon shift generated for: " + i + " " + afternoonShits.size() + " ###");
+        for(String i: afternoonShifts.keySet()){
+            System.out.println("### Afternoon shift generated for: " + i + " " + afternoonShifts.size() + " ###");
         }
     }
 
@@ -60,7 +58,7 @@ public class GenerateShiftPlanWeek {
         AfternoonShift afternoonShift = generateAfternoonShift(date, positions, morningShift);
 
         morningShifts.put(String.valueOf(date.getDayOfWeek()), morningShift);
-        afternoonShits.put(String.valueOf(date.getDayOfWeek()), afternoonShift);
+        afternoonShifts.put(String.valueOf(date.getDayOfWeek()), afternoonShift);
     }
 
     public MorningShift generateMorningShift(LocalDate date, int[] positions){
@@ -75,4 +73,11 @@ public class GenerateShiftPlanWeek {
         return afternoonShift;
     }
 
+    public HashMap<String, MorningShift> getMorningShifts() {
+        return morningShifts;
+    }
+
+    public HashMap<String, AfternoonShift> getAfternoonShifts() {
+        return afternoonShifts;
+    }
 }
